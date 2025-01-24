@@ -18,17 +18,17 @@ export default function App() {
   };
   return (
     <div>
-      <Table<string, IDataTable> data={data}>
+      <Table<IDataTable, string> data={data}>
         <TableHead<string>>
-          {({ row }) => (
+          {({ row, doSort }) => (
             <TableHeaderCell>{row}</TableHeaderCell>
           )}
         </TableHead>
-        <TableBody<IDataTable>>
-          {({ row }) => (
+        <TableBody<IDataTable, string>>
+          {({ row, heads }) => (
             <TableRow>
-              <TableCell>{row?.text}</TableCell>
-              <TableCell>{row?.price}</TableCell>
+              <TableCell narrowLabel={heads[0]}>{row?.text}</TableCell>
+              <TableCell narrowLabel={heads[1]}>{row?.price}</TableCell>
             </TableRow>
           )}
         </TableBody>
@@ -59,8 +59,8 @@ export default function App() {
         <TableBody>
           {Array.from({ length: 50 }, (_, i) => (
             <TableRow>
-              <TableCell>Cell 1</TableCell>
-              <TableCell>Cell 2</TableCell>
+              <TableCell narrowLabel="head 1">Cell 1</TableCell>
+              <TableCell narrowLabel="head 2">Cell 2</TableCell>
             </TableRow>
           ))}
         </TableBody>

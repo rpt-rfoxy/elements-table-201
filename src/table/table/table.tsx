@@ -1,20 +1,25 @@
-import React, { TableHTMLAttributes } from "react";
+import React, { TableHTMLAttributes, useState } from "react";
 import { ElTable } from "./styles";
-import { IData } from "./types";
+import { IData, ISort } from "./types";
 import { TableDriver } from "./table-driver";
 
-// Define the ITableProps interface with generics
-export interface ITableProps<THead = any, TRow = any> extends TableHTMLAttributes<HTMLTableElement> {
+export interface ITableProps<TRow = any, THead = any> extends TableHTMLAttributes<HTMLTableElement> {
   data?: IData<THead, TRow>;
 }
 
-export const Table = <THead, TRow>({
+export const doSort = <TRow, THead>(sort: ISort, setSort: React.Dispatch<React.SetStateAction<ISort>>) => (callback?: (sort: ISort) => void) => () => {
+  setSort(sort == "asc" ? "desc" : "asc")
+  callback?.(sort)
+}
+
+export const Table = <TRow, THead>({
   children,
   data,
   ...rest
-}: ITableProps<THead, TRow>) => {
+}: ITableProps<TRow, THead>) => {
+  const [sort, setSort] = useState<ISort>("asc")
   return (
-    <TableDriver.Provider value={{ heads: data?.heads || [], rows: data?.rows || [] }}>
+    <TableDriver.Provider value={{ heads: data?.heads || [], rows: data?.rows || [], doSort: doSort(sort, setSort) }}>
       <ElTable {...rest}>
         {children}
       </ElTable>

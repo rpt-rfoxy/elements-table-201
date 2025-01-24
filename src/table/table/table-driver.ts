@@ -1,7 +1,8 @@
 import { createContext } from "react";
-import { IData } from "./types";
+import { ITableContext } from "./types";
 
-export const TableDriver = createContext<IData<any, any>>({
+export const TableDriver = createContext<ITableContext<any, any>>({
   rows: [],
-  heads: []
+  heads: [],
+  doSort: () => () => void (0)
 })
