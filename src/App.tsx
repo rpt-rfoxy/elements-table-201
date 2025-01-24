@@ -52,7 +52,7 @@ export default function App() {
       </Table>
 
       <Table>
-        <TableHead stickyHeader>
+        <TableHead isSticky>
           <TableHeaderCell>head 1</TableHeaderCell>
           <TableHeaderCell>head 2</TableHeaderCell>
         </TableHead>
@@ -68,3 +68,5 @@ export default function App() {
     </div>
   );
 }
+
+

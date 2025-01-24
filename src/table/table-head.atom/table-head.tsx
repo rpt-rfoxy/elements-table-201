@@ -11,24 +11,24 @@ interface ITableBodyChildProps<TRowItem> {
 
 export interface ITableHeadProps<TRowItem> extends Omit<TableHTMLAttributes<HTMLTableSectionElement>, 'children'> {
   children?: (ReactNode) | ((props: ITableBodyChildProps<TRowItem>) => ReactNode);
-  stickyHeader?: boolean
+  isSticky?: boolean
 }
 
 export const TableHead = <TRow,>({
   children,
-  stickyHeader,
+  isSticky,
   ...rest
 }: ITableHeadProps<TRow>) => {
   if (typeof children == "function") {
     const dataTable = useTable()
     return (
-      <ElTableHead {...rest} data-position={stickyHeader ? "sticky" : "relative"}>
+      <ElTableHead {...rest} data-position={isSticky ? "sticky" : "relative"}>
         {dataTable.heads.map((row) => children({ row, doSort: dataTable.doSort }))}
       </ElTableHead>
     )
   }
   return (
-    <ElTableHead {...rest} data-position={stickyHeader ? "sticky" : "relative"} >
+    <ElTableHead {...rest} data-position={isSticky ? "sticky" : "relative"} >
       {children}
     </ElTableHead>
   );
