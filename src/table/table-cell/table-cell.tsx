@@ -14,7 +14,7 @@ export interface ITableCellProps extends TdHTMLAttributes<HTMLTableCellElement> 
 export const TableCell: FC<ITableCellProps> = ({
   children,
   alignment = "left",
-  flexDirection = "row",
+  flexDirection = "column",
   isFlexWrap,
   ...rest
 }) => {

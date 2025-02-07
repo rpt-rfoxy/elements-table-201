@@ -44,13 +44,13 @@ export const ElTableCellContent = styled.div<IElTableCellContentConfiguration>`
   justify-content: center;
   display: flex;
 
-  flex-wrap: ${({ isFlexWrap }) => isFlexWrap ? 'wrap' : 'unset'};
+  flex-wrap: ${({ isFlexWrap }) => isFlexWrap ? 'wrap' : 'nowrap'};
 
-  & [data - flex - direction='column'] {
-    flex - direction: column;
+  &[data-flex-direction='column'] {
+    flex-direction: column;
   }
 
-  & [data - flex - direction='row'] {
-    flex - direction: row;
+  &[data-flex-direction='row'] {
+    flex-direction: row;
   }
 `;

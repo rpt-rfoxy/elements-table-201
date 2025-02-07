@@ -15,7 +15,7 @@ export interface ITableHeaderProps extends ThHTMLAttributes<HTMLTableCellElement
 export const TableHeaderCell: FC<ITableHeaderProps> = ({
   children,
   alignment = "left",
-  flexDirection = "row",
+  flexDirection = "column",
   isFlexWrap,
   ...rest
 }) => {
