@@ -1,18 +1,20 @@
 import { styled } from "styled-components";
 
-
 interface ITableCellConfiguration {
   width?: string
   minWidth?: string
   maxWidth?: string
+  narrowLabel?: string
 }
 
-export const ElTableHeaderCell = styled.th<ITableCellConfiguration>`
+export const ElTableCell = styled.td<ITableCellConfiguration>`
   width: ${({ width }) => width || "auto"};
-  minWidth: ${({ minWidth }) => minWidth || "auto"};
-  maxWidth: ${({ maxWidth }) => maxWidth || "auto"};
+  min-width: ${({ minWidth }) => minWidth || "auto"};
+  max-width: ${({ maxWidth }) => maxWidth || "auto"};
   gap: var(--spacing-spacing-1);
   flex: auto;
+  vertical-align: middle;
+
   &[data-alignment='left']{
     text-align: left;
   }
@@ -23,7 +25,7 @@ export const ElTableHeaderCell = styled.th<ITableCellConfiguration>`
     text-align: right;
   }
 `;
-export const ElTableHeaderCellContent = styled.div`
+export const ElTableCellContent = styled.div<ITableCellConfiguration>`
   width: 100%;
   padding: var(--spacing-2);
   gap: var(--spacing-spacing-1);
@@ -38,5 +40,4 @@ export const ElTableHeaderCellContent = styled.div`
   justify-content: center;
   display: flex;
   flex-direction: column;
-
 `;
