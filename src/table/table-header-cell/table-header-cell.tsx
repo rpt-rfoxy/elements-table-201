@@ -8,16 +8,20 @@ export interface ITableHeaderProps extends ThHTMLAttributes<HTMLTableCellElement
   width?: string
   minWidth?: string
   maxWidth?: string
+  flexDirection?: "column" | "row"
+  isFlexWrap?: boolean
 }
 
 export const TableHeaderCell: FC<ITableHeaderProps> = ({
   children,
   alignment = "left",
+  flexDirection = "row",
+  isFlexWrap,
   ...rest
 }) => {
   return (
     <ElTableHeaderCell {...rest} data-alignment={alignment} >
-      <ElTableHeaderCellContent>
+      <ElTableHeaderCellContent data-flex-direction={flexDirection} isFlexWrap={isFlexWrap} >
         {children}
       </ElTableHeaderCellContent>
     </ElTableHeaderCell>

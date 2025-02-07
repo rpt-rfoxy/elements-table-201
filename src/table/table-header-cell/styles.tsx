@@ -7,11 +7,15 @@ interface ITableCellConfiguration {
   maxWidth?: string
 }
 
+interface ITableCellCellContentConfiguration {
+  isFlexWrap?: boolean
+}
+
 export const ElTableHeaderCell = styled.th<ITableCellConfiguration>`
   width: ${({ width }) => width || "auto"};
   min-width: ${({ minWidth }) => minWidth || "auto"};
   max-width: ${({ maxWidth }) => maxWidth || "auto"};
-  gap: var(--spacing-spacing-1);
+  gap: var(--spacing-1);
   flex: auto;
   &[data-alignment='left']{
     text-align: left;
@@ -23,7 +27,7 @@ export const ElTableHeaderCell = styled.th<ITableCellConfiguration>`
     text-align: right;
   }
 `;
-export const ElTableHeaderCellContent = styled.div`
+export const ElTableHeaderCellContent = styled.div<ITableCellCellContentConfiguration>`
   width: 100%;
   padding: var(--spacing-2);
   gap: var(--spacing-spacing-1);
@@ -37,6 +41,15 @@ export const ElTableHeaderCellContent = styled.div`
   flex: 1;
   justify-content: center;
   display: flex;
-  flex-direction: column;
+
+  flex-wrap: ${({ isFlexWrap }) => isFlexWrap ? 'wrap' : 'unset'};
+
+  & [data - flex - direction='column'] {
+    flex - direction: column;
+  }
+
+  & [data - flex - direction='row'] {
+    flex - direction: row;
+  }
 
 `;

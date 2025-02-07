@@ -7,11 +7,15 @@ interface ITableCellConfiguration {
   narrowLabel?: string
 }
 
+interface IElTableCellContentConfiguration {
+  isFlexWrap?: boolean
+}
+
 export const ElTableCell = styled.td<ITableCellConfiguration>`
   width: ${({ width }) => width || "auto"};
   min-width: ${({ minWidth }) => minWidth || "auto"};
   max-width: ${({ maxWidth }) => maxWidth || "auto"};
-  gap: var(--spacing-spacing-1);
+  gap: var(--spacing-1);
   flex: auto;
   vertical-align: middle;
 
@@ -25,7 +29,7 @@ export const ElTableCell = styled.td<ITableCellConfiguration>`
     text-align: right;
   }
 `;
-export const ElTableCellContent = styled.div<ITableCellConfiguration>`
+export const ElTableCellContent = styled.div<IElTableCellContentConfiguration>`
   width: 100%;
   padding: var(--spacing-2);
   gap: var(--spacing-spacing-1);
@@ -39,5 +43,14 @@ export const ElTableCellContent = styled.div<ITableCellConfiguration>`
   flex: 1;
   justify-content: center;
   display: flex;
-  flex-direction: column;
+
+  flex-wrap: ${({ isFlexWrap }) => isFlexWrap ? 'wrap' : 'unset'};
+
+  & [data - flex - direction='column'] {
+    flex - direction: column;
+  }
+
+  & [data - flex - direction='row'] {
+    flex - direction: row;
+  }
 `;
