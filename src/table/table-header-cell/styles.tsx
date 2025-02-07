@@ -1,21 +1,18 @@
 import { styled } from "styled-components";
-import { isNarrow } from "../table/styles";
 
 
 interface ITableCellConfiguration {
   width?: string
   minWidth?: string
   maxWidth?: string
-  narrowLabel?: string
 }
 
-export const ElTableCell = styled.td<ITableCellConfiguration>`
+export const ElTableHeaderCell = styled.th<ITableCellConfiguration>`
   width: ${({ width }) => width || "auto"};
-  minWidth: ${({ minWidth }) => minWidth || "auto"};
-  maxWidth: ${({ maxWidth }) => maxWidth || "auto"};
+  min-width: ${({ minWidth }) => minWidth || "auto"};
+  max-width: ${({ maxWidth }) => maxWidth || "auto"};
   gap: var(--spacing-spacing-1);
   flex: auto;
-
   &[data-alignment='left']{
     text-align: left;
   }
@@ -26,7 +23,7 @@ export const ElTableCell = styled.td<ITableCellConfiguration>`
     text-align: right;
   }
 `;
-export const ElTableCellContent = styled.div<ITableCellConfiguration>`
+export const ElTableHeaderCellContent = styled.div`
   width: 100%;
   padding: var(--spacing-2);
   gap: var(--spacing-spacing-1);
@@ -41,16 +38,5 @@ export const ElTableCellContent = styled.div<ITableCellConfiguration>`
   justify-content: center;
   display: flex;
   flex-direction: column;
-  
-  ${isNarrow}{
-    &:before{
-      content: attr(data-narrow-label);
-      color: var(--neutral-500);
-      font-size: var(--font-size-sm);}
-    }
-  }
-`;
 
-
-export const ElTableCellLink = styled.a`
 `;
